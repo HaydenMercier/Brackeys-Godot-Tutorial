@@ -8,5 +8,5 @@ func add_point():
 	score += 1
 	score_label.text = "You Collected " + str(score) + " Coins"
 
-func _process(delta):
+func _process(_delta):
 	pass
