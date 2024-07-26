@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjoq8v5kccvb7"]
+[gd_scene load_steps=19 format=3 uid="uid://bjoq8v5kccvb7"]
 
 [ext_resource type="PackedScene" uid="uid://c2d466py5s06p" path="res://Game/Scenes/player.tscn" id="1_momdl"]
 [ext_resource type="Texture2D" uid="uid://bs1k8fy473ya0" path="res://Game/Assets/sprites/world_tileset.png" id="2_4g5qc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Game/Scripts/GameManager.gd" id="8_ehajm"]
 [ext_resource type="FontFile" uid="uid://cavn1nrjoqqc2" path="res://Game/Assets/fonts/PixelOperator8-Bold.ttf" id="9_rfqj3"]
 [ext_resource type="PackedScene" uid="uid://bun2v3bvxeqkl" path="res://Game/Scenes/killzone.tscn" id="10_xmyl2"]
+[ext_resource type="PackedScene" uid="uid://bjwfgnxu4s3a2" path="res://Game/Scenes/movingplatform.tscn" id="11_usmqh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x17tv"]
 texture = ExtResource("2_4g5qc")
@@ -499,7 +500,7 @@ limit_smoothed = true
 position_smoothing_speed = 10.0
 
 [node name="SpawnPoint" type="Node2D" parent="Player"]
-position = Vector2(597, -793)
+position = Vector2(39, -34)
 
 [node name="Coins" type="Node2D" parent="."]
 visible = false
@@ -559,8 +560,8 @@ position = Vector2(1469, -736)
 [node name="Your First Enemy5" parent="." instance=ExtResource("6_6m0hk")]
 position = Vector2(1834, -752)
 
-[node name="Your First Enemy5" parent="Your First Enemy5" instance=ExtResource("6_6m0hk")]
-position = Vector2(548, 592)
+[node name="Your First Enemy6" parent="." instance=ExtResource("6_6m0hk")]
+position = Vector2(2382, -160)
 
 [node name="Platform" parent="." instance=ExtResource("8_471p8")]
 position = Vector2(2008, -188)
@@ -581,40 +582,39 @@ position = Vector2(1569, -780)
 [node name="Tutorial to Ice3" parent="." instance=ExtResource("8_471p8")]
 position = Vector2(1193.96, -744.514)
 
+[node name="movingplatform" parent="." instance=ExtResource("11_usmqh")]
+
 [node name="Platforms" type="Node" parent="."]
 
-[node name="Platform10" parent="Platforms" instance=ExtResource("8_471p8")]
-position = Vector2(2481, -477)
-
-[node name="Platform9" parent="Platforms" instance=ExtResource("8_471p8")]
-position = Vector2(2541, -427)
-
-[node name="Platform12" parent="Platforms" instance=ExtResource("8_471p8")]
-position = Vector2(2482, -571)
-
-[node name="Platform11" parent="Platforms" instance=ExtResource("8_471p8")]
-position = Vector2(2541, -524)
-
-[node name="Platform2" parent="Platforms" instance=ExtResource("8_471p8")]
-position = Vector2(2541, -236)
-
 [node name="Platform3" parent="Platforms" instance=ExtResource("8_471p8")]
-position = Vector2(2481, -286)
+position = Vector2(2480, -290)
 
 [node name="Platform4" parent="Platforms" instance=ExtResource("8_471p8")]
-position = Vector2(2541, -328)
+position = Vector2(2540, -340)
 
 [node name="Platform5" parent="Platforms" instance=ExtResource("8_471p8")]
-position = Vector2(2481, -372)
+position = Vector2(2480, -390)
 
 [node name="Platform6" parent="Platforms" instance=ExtResource("8_471p8")]
-position = Vector2(2414, -626)
+position = Vector2(2420, -626)
 
 [node name="Platform7" parent="Platforms" instance=ExtResource("8_471p8")]
-position = Vector2(2326, -651)
+position = Vector2(2330, -651)
 
 [node name="Platform8" parent="Platforms" instance=ExtResource("8_471p8")]
 position = Vector2(2240, -683)
+
+[node name="Platform9" parent="Platforms" instance=ExtResource("8_471p8")]
+position = Vector2(2540, -440)
+
+[node name="Platform10" parent="Platforms" instance=ExtResource("8_471p8")]
+position = Vector2(2460, -480)
+
+[node name="Platform11" parent="Platforms" instance=ExtResource("8_471p8")]
+position = Vector2(2540, -524)
+
+[node name="Platform12" parent="Platforms" instance=ExtResource("8_471p8")]
+position = Vector2(2481, -571)
 
 [node name="KillZone" parent="." instance=ExtResource("10_xmyl2")]
 
