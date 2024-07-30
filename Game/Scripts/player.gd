@@ -4,26 +4,29 @@ const SPEED = 150.0
 const JUMP_VELOCITY = -320.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var can_coyote_jump = false
+var is_jumping = false
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var coyote_timer = $CoyoteTimer
 
-func _ready():
-	return
-
 func _physics_process(delta):
-	if not is_on_floor() && !can_coyote_jump:
-		velocity.y += gravity * delta
+	if is_on_floor():
+		can_coyote_jump = true
+		is_jumping = false
+	else:
+		if is_jumping:
+			velocity.y += gravity * delta
+		else:
+			velocity.y += gravity * delta 
 
 	if Input.is_action_just_pressed("jump"):
-		if can_coyote_jump || is_on_floor():
+		if (can_coyote_jump or coyote_timer.time_left > 0) and not is_jumping:
 			velocity.y = JUMP_VELOCITY
-			if can_coyote_jump:
-				can_coyote_jump = false
+			is_jumping = true
+			can_coyote_jump = false
+			coyote_timer.start()
 
 	var direction = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	
-	print("Direction: ", direction)  # Debug statement to check direction input
 
 	if direction > 0:
 		animated_sprite.flip_h = false
@@ -36,18 +39,16 @@ func _physics_process(delta):
 		else:
 			animated_sprite.play("run")
 	else:
-		animated_sprite.play("jump")
+		if is_jumping:
+			animated_sprite.play("jump")
+		else:
+			animated_sprite.play("fall")
 
 	velocity.x = direction * SPEED
 
-	print("Velocity X: ", velocity.x)  # Debug statement to check velocity
+	print("Velocity X: ", velocity.x)
 
 	move_and_slide()
-
-	var was_on_floor = is_on_floor()
-	if was_on_floor && !is_on_floor():
-		coyote_timer.start()
-		can_coyote_jump = true
 
 func teleport_to_spawn_point():
 	if $SpawnPoint:

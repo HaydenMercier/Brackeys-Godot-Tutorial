@@ -1,18 +1,37 @@
-extends Node
+extends Node2D
 
-var player_pos: Vector2
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-var direction: int = rng.randi_range(-1, 1)
-var speed: int = rng.randi_range(20, 100)
 
-# Called when the node enters the scene tree for the first time.
+var tween
+var distance = 100
+var time = 2
+var initial_position
+var target_position
+
 func _ready():
-	player_pos = $moving_platform.position
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	while player_pos.x - 50 < position.x and position.x < player_pos.x + 50:
-		position.x += direction * delta * speed
+	tween = Tween.new()
+	add_child(tween)
+	
 
-	if position.x >= player_pos.x + 50 or position.x <= player_pos.x - 50:
-		direction = -direction
+	initial_position = position
+	target_position = initial_position + Vector2(distance, 0)
+	
+
+	move_platform()
+
+func move_platform():
+
+	tween.interpolate_property(self, "position", initial_position, target_position, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	
+
+	tween.connect("tween_completed", self, "on_tween_completed")
+
+func on_tween_completed(object, key):
+
+	var temp = initial_position
+	initial_position = target_position
+	target_position = temp
+	
+
+	move_platform()
