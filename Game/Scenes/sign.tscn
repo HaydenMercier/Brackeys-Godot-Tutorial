@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://g6hy752sd4cw"]
+
+[ext_resource type="Script" path="res://Game/Scripts/sign.gd" id="1_6ssgp"]
+[ext_resource type="Texture2D" uid="uid://dmgvpm4rx3dlb" path="res://Game/Assets/sprites/sign.png" id="1_ryoir"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kah2q"]
+size = Vector2(14, 14)
+
+[node name="Sign" type="Area2D"]
+script = ExtResource("1_6ssgp")
+
+[node name="Sign Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_ryoir")
+
+[node name="Text" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -61.0
+offset_right = 21.0
+offset_bottom = -38.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kah2q")
