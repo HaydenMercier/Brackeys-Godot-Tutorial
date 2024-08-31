@@ -23,3 +23,5 @@ autowrap_mode = 2
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kah2q")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
